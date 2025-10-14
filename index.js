@@ -29,21 +29,44 @@ botaoSalvar.addEventListener("click", (evento) => {
     pItem.classList.add("texto-item");
     pItem.textContent = inputItem.value;
         
-    //const pData = document.createElement("p");
-        
+    const pData = document.createElement("p");
+    pData.classList.add("texto-data");
+    
+    const agora = new Date();
+    const dia  = agora.toLocaleDateString('pt-BR', {weekday: 'long'});
+    const dataCompleta = agora.toLocaleDateString('pt-BR');
+    const hora = agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit', second: undefined, hour12: false});
+
+    pData.textContent = `${dia} (${dataCompleta}) às ${hora}`;
+       
     div.appendChild(input);
     div.appendChild(pItem);
     li.appendChild(div);
-
-
+    li.appendChild(pData);
+    
     const addToList = document.getElementById("lista-de-compras");
     addToList.appendChild(li);
 
-
     const limparInput = document.getElementById("input-item").value = "";
-
-   
+ 
 });
 
-   
+
+function formatarDataHora (locale = 'pt-BR', exibirSegundos = false){
+    const agora = new Date();
+    return agora.toLocaleString(locale, {
+        weekday: 'long',
+        year: 'numeric',
+        // month: 'long',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: exibirSegundos ? '2-digit' : undefined,
+        hour12: false
+    });
+
+}
+
+console.log(formatarDataHora());
 
