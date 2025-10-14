@@ -23,8 +23,7 @@ botaoSalvar.addEventListener("click", (evento) => {
     const input = document.createElement("input");
     input.type = "checkbox";
     input.id = "checkbox-" + contador++;
-    
-        
+         
     const pItem = document.createElement("p");
     pItem.classList.add("texto-item");
     pItem.textContent = inputItem.value;
@@ -48,6 +47,14 @@ botaoSalvar.addEventListener("click", (evento) => {
     addToList.appendChild(li);
 
     const limparInput = document.getElementById("input-item").value = "";
+
+    input.addEventListener('click', () => {
+        if (input.checked){
+            pItem.style.textDecoration = "line-through";
+        } else {
+            pItem.style.textDecoration = "none";
+        }
+    });
  
 });
 
